@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+        }
+        .calculator {
+            background: linear-gradient(to right, #ffcc70, #ff8e53);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        .calculator:hover {
+            transform: scale(1.08);
+        }
+        input, select, button {
+            margin: 10px;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+        input, select {
+            background: white;
+            color: #333;
+        }
+        button {
+            background: linear-gradient(to right, #ff512f, #dd2476);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: linear-gradient(to right, #e63946, #ff9f43);
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        h3 {
+            margin-top: 15px;
+            font-size: 20px;
+        }
+        #result {
+            font-weight: bold;
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Simple Calculator</h2>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="num2" placeholder="Enter second number">
+        <br>
+        <button onclick="calculate()">Calculate</button>
+        <h3>Result: <span id="result">0</span></h3>
+    </div>
+    <script>
+        function calculate() {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let operator = document.getElementById('operator').value;
+            let result;
+            if (isNaN(num1) || isNaN(num2)) {
+                result = 'Invalid Input';
+            } else {
+                switch(operator) {
+                    case '+': result = num1 + num2; break;
+                    case '-': result = num1 - num2; break;
+                    case '*': result = num1 * num2; break;
+                    case '/': result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero'; break;
+                    default: result = 'Invalid Operator';
+                }
+            }
+            document.getElementById('result').textContent = result;
+        }
+    </script>
+</body>
+</html>
